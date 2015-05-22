@@ -33,7 +33,7 @@ class App {
         this.sessionMiddleware = session({
             secret: 'ilovethenodejs',
             store: new MongoStore({
-                db: 'social-feeder'
+                db: 'social-chat'
             }),
             resave: true,
             saveUninitialized: true
@@ -60,8 +60,9 @@ class App {
 
         // And add some connection listeners:
         this.io.on('connection', socket => {
-            console.log('a user connected')
+            // console.log('a user connected')
             let username = socket.request.session.username
+            console.log("><  socket.request.session",  socket.request.session)
             socket.on('im', msg => {
                 // im received
                 console.log(">< username", username)
